@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   NEUROEXECUÇÃO BLOG - GLOBAL STYLES
+   Inspired by Anthropic's clean aesthetic
+======================================== */
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 15 23 42;
+    --muted: 248 250 252;
+    --muted-foreground: 100 116 139;
+    --border: 226 232 240;
+    --ring: 12 142 230;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-neutral-800;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+}
+
+@layer components {
+  /* Container */
+  .container-blog {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Animated gradient background */
+  .gradient-bg {
+    background: linear-gradient(
+      135deg,
+      rgba(12, 142, 230, 0.03) 0%,
+      rgba(255, 126, 15, 0.02) 50%,
+      rgba(12, 142, 230, 0.03) 100%
+    );
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  /* Link styles */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    @apply absolute bottom-0 left-0 w-0 h-[2px] bg-brand-500 transition-all duration-300;
+    content: '';
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 
+           bg-brand-600 text-white font-semibold rounded-lg
+           transition-all duration-200 ease-out
+           hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-500/20
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
+           active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 
+           bg-white text-neutral-700 font-semibold rounded-lg
+           border border-neutral-200
+           transition-all duration-200 ease-out
+           hover:bg-neutral-50 hover:border-neutral-300 hover:shadow-md
+           focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2
+           active:scale-[0.98];
+  }
+
+  /* Category badges */
+  .category-badge {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full
+           transition-colors duration-200;
+  }
+
+  .category-badge-neurociencia {
+    @apply bg-brand-50 text-brand-700 hover:bg-brand-100;
+  }
+
+  .category-badge-produtividade {
+    @apply bg-accent-50 text-accent-700 hover:bg-accent-100;
+  }
+
+  .category-badge-tdah {
+    @apply bg-purple-50 text-purple-700 hover:bg-purple-100;
+  }
+
+  .category-badge-frameworks {
+    @apply bg-emerald-50 text-emerald-700 hover:bg-emerald-100;
+  }
+
+  /* Abstract icon backgrounds (similar to Anthropic) */
+  .icon-abstract {
+    @apply relative overflow-hidden;
+    background: linear-gradient(
+      135deg,
+      var(--icon-color-1, #0c8ee6) 0%,
+      var(--icon-color-2, #ff7e0f) 100%
+    );
+  }
+
+  .icon-abstract::before {
+    content: '';
+    @apply absolute inset-0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='white' stroke-width='0.5' opacity='0.3'/%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='white' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E") center/cover;
+  }
+
+  /* Article content typography */
+  .article-content {
+    @apply prose prose-lg prose-neutral max-w-none;
+  }
+
+  .article-content h2 {
+    @apply text-2xl sm:text-3xl font-bold text-neutral-900 mt-12 mb-6
+           scroll-mt-24;
+  }
+
+  .article-content h3 {
+    @apply text-xl sm:text-2xl font-semibold text-neutral-800 mt-8 mb-4
+           scroll-mt-24;
+  }
+
+  .article-content p {
+    @apply text-neutral-600 leading-relaxed mb-6;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    @apply my-6 space-y-2;
+  }
+
+  .article-content li {
+    @apply text-neutral-600 leading-relaxed;
+  }
+
+  .article-content blockquote {
+    @apply border-l-4 border-brand-500 pl-6 py-2 my-8
+           bg-brand-50/50 rounded-r-lg;
+  }
+
+  .article-content blockquote p {
+    @apply text-neutral-700 italic mb-0;
+  }
+
+  .article-content img {
+    @apply rounded-xl shadow-lg my-8;
+  }
+
+  .article-content a {
+    @apply text-brand-600 font-medium hover:text-brand-700
+           underline decoration-brand-300 underline-offset-2
+           hover:decoration-brand-500 transition-colors;
+  }
+
+  .article-content code {
+    @apply text-sm bg-neutral-100 text-brand-700 px-1.5 py-0.5 rounded;
+  }
+
+  .article-content pre {
+    @apply bg-neutral-900 text-neutral-100 rounded-xl p-6 my-8 overflow-x-auto;
+  }
+
+  .article-content pre code {
+    @apply bg-transparent text-inherit p-0;
+  }
+
+  /* Newsletter form */
+  .newsletter-input {
+    @apply w-full px-4 py-3 text-neutral-900 bg-white border border-neutral-200 
+           rounded-lg transition-all duration-200
+           placeholder:text-neutral-400
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
+           disabled:bg-neutral-100 disabled:cursor-not-allowed;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #0c8ee6 0%, #0070c4 100%);
+  }
+
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+
+  /* Focus visible */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom scrollbar for article content */
+.article-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.article-content::-webkit-scrollbar-track {
+  @apply bg-neutral-100 rounded-full;
+}
+
+.article-content::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 rounded-full;
+}
+
+.article-content::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-400;
+}
